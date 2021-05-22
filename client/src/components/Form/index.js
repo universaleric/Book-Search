@@ -1,27 +1,26 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// This file exports the Input, TextArea, and FormBtn components
-
-export function Input(props) {
+function Form(props) {
   return (
-    <div className="form-group">
-      <input className="form-control" {...props} />
-    </div>
+    <nav className="navbar navbar-light bg-light">
+      <form className="form-inline">
+        <input
+          className="form-control mr-sm-2 mt-10"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          onChange={props.handleInputChange}
+        />
+        <button
+          className="btn btn-outline-success my-2 my-sm-0"
+          onClick={props.handleSubmit}
+        >
+          Search
+        </button>
+      </form>
+    </nav>
   );
 }
 
-export function TextArea(props) {
-  return (
-    <div className="form-group">
-      <textarea className="form-control" rows="20" {...props} />
-    </div>
-  );
-}
-
-export function FormBtn(props) {
-  return (
-    <button {...props} style={{ float: "right", marginBottom: 10 }} className="btn btn-success">
-      {props.children}
-    </button>
-  );
-}
+export default Form;
