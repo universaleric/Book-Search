@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
+import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
 import axios from "axios";
 
@@ -11,18 +11,6 @@ function Books() {
   // Setting our component's initial state
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-
-  // Load all books and store them with setBooks
-  useEffect(() => {
-    loadBooks();
-  }, []);
-
-  // Loads all books and sets them to books
-  function loadBooks() {
-    API.getBooks()
-      .then((res) => setResult(res.data))
-      .catch((err) => console.log(err));
-  }
 
   // Deletes a book from the database with a given id, then reloads books from the db
   // function deleteBook(id) {
@@ -43,13 +31,14 @@ function Books() {
     axios
       .get("https://www.googleapis.com/books/v1/volumes?q=" + search)
       .then((res) => {
-        // setResult(res.data);
+        setResult(res.data);
         console.log(res.data);
-        console.log(result);
       })
       .catch((err) => console.log(err));
   };
 
+  console.log(result.items);
+  console.log(result.length);
   return (
     <Container fluid>
       <Row>
@@ -60,24 +49,27 @@ function Books() {
           />
         </Col>
         <Col size="md-6 sm-12">
-          {/* {result
-            ? result.map(
-                (book) => (
-                  <img
-                    src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={book.title}
-                  />
-                )
-                // <ListItem key={book._id}>
-                //   <Link to={"/search/" + book._id}>
-                //     <strong>
-                //       {book.title} by {book.author}
-                //     </strong>
-                //   </Link>
-                //   <DeleteBtn onClick={() => deleteBook(book._id)} />
-                // </ListItem>
-              )
-            : "Waiting for results"} */}
+          {result.items !== undefined ? (
+            <List>
+              {result.items.map((book) => (
+                <ListItem key={book._id}>
+                  <Link to={"/books/" + book._id}>
+                    Author: {book.volumeInfo.authors[0]}
+                    Description: {book.volumeInfo.description}
+                    <img
+                      src={book.volumeInfo.imageLinks.thumbnail}
+                      alt={book.volumeInfo.title}
+                    />
+                    Link: {book.volumeInfo.infoLink}
+                    Title: {book.volumeInfo.title}
+                  </Link>
+                  {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
+                </ListItem>
+              ))}
+            </List>
+          ) : (
+            <h3>No Results to Display</h3>
+          )}
         </Col>
       </Row>
     </Container>
