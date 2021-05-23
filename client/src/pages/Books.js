@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import DeleteBtn from "../components/DeleteBtn";
-import API from "../utils/API";
-import { Link } from "react-router-dom";
+// import API from "../utils/API";
+// import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
@@ -12,14 +12,6 @@ function Books() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
 
-  // Deletes a book from the database with a given id, then reloads books from the db
-  // function deleteBook(id) {
-  //   API.deleteBook(id)
-  //     .then((res) => loadBooks())
-  //     .catch((err) => console.log(err));
-  // }
-
-  // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
     const books = event.target.value;
     console.log(books);
@@ -41,37 +33,39 @@ function Books() {
   console.log(result.length);
   return (
     <Container fluid>
-      <Row>
-        <Col size="md-6">
-          <Form
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}
-          />
-        </Col>
-        <Col size="md-6 sm-12">
-          {result.items !== undefined ? (
-            <List>
-              {result.items.map((book) => (
-                <ListItem key={book._id}>
-                  <Link to={"/books/" + book._id}>
-                    Author: {book.volumeInfo.authors[0]}
-                    Description: {book.volumeInfo.description}
-                    <img
-                      src={book.volumeInfo.imageLinks.thumbnail}
-                      alt={book.volumeInfo.title}
-                    />
-                    Link: {book.volumeInfo.infoLink}
-                    Title: {book.volumeInfo.title}
-                  </Link>
-                  {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
-                </ListItem>
-              ))}
-            </List>
-          ) : (
-            <h3>No Results to Display</h3>
-          )}
-        </Col>
-      </Row>
+      <Form handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+
+      {result.items !== undefined && result.items !== null ? (
+        <List>
+          {result.items.map((book) => (
+            <ListItem key={book._id}>
+              <div>
+                <img
+                  src={book.volumeInfo.imageLinks.thumbnail}
+                  alt={book.volumeInfo.title}
+                />
+              </div>
+              <div>
+                <strong>Title:</strong> {book.volumeInfo.title}
+              </div>
+              <div>
+                <strong>Author:</strong> {book.volumeInfo.authors[0]}
+              </div>
+              <div>
+                <strong>Description:</strong> {book.volumeInfo.description}
+              </div>
+              <div>
+                <strong>Link:</strong>{" "}
+                <a href={book.volumeInfo.infoLink}>
+                  {book.volumeInfo.infoLink}
+                </a>
+              </div>
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <h3>No Results to Display</h3>
+      )}
     </Container>
   );
 }
