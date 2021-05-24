@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
+// import SaveBtn from "../components/SaveBtn";
 // import DeleteBtn from "../components/DeleteBtn";
 // import API from "../utils/API";
-// import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
 import axios from "axios";
 
-function Books() {
-  // Setting our component's initial state
+function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
+
+  // function deleteBook(id) {
+  //   API.deleteBook(id)
+  //     .then((res) => loadBooks())
+  //     .catch((err) => console.log(err));
+  // }
+
+  // function saveBook(bookData) {
+  //   API.saveBook(bookData)
+  //     .then((res) => loadBooks())
+  //     .catch((err) => console.log(err));
+  // }
 
   function handleInputChange(event) {
     const books = event.target.value;
@@ -60,6 +71,8 @@ function Books() {
                   {book.volumeInfo.infoLink}
                 </a>
               </div>
+              {/* <SaveBtn onClick={() => saveBook(book._id)} />
+              <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
             </ListItem>
           ))}
         </List>
@@ -70,4 +83,4 @@ function Books() {
   );
 }
 
-export default Books;
+export default Search;
