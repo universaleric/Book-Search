@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import SaveBtn from "../components/SaveBtn";
+import SaveBtn from "../components/SaveBtn";
 // import DeleteBtn from "../components/DeleteBtn";
-// import API from "../utils/API";
+import API from "../utils/API";
 import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
@@ -17,11 +17,11 @@ function Search() {
   //     .catch((err) => console.log(err));
   // }
 
-  // function saveBook(bookData) {
-  //   API.saveBook(bookData)
-  //     .then((res) => loadBooks())
-  //     .catch((err) => console.log(err));
-  // }
+  function saveBook(bookData) {
+    API.saveBook(bookData)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
 
   function handleInputChange(event) {
     const books = event.target.value;
@@ -71,8 +71,8 @@ function Search() {
                   {book.volumeInfo.infoLink}
                 </a>
               </div>
-              {/* <SaveBtn onClick={() => saveBook(book._id)} />
-              <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
+              <SaveBtn onClick={() => saveBook(book._id)} />
+              {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
             </ListItem>
           ))}
         </List>
