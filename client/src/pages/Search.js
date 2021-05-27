@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SaveBtn from "../components/SaveBtn";
-// import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
 import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -10,12 +9,6 @@ import axios from "axios";
 function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-
-  // function deleteBook(id) {
-  //   API.deleteBook(id)
-  //     .then((res) => loadBooks())
-  //     .catch((err) => console.log(err));
-  // }
 
   function saveBook(bookData) {
     API.saveBook(bookData)
@@ -72,7 +65,6 @@ function Search() {
                 </a>
               </div>
               <SaveBtn onClick={() => saveBook(book._id)} />
-              {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
             </ListItem>
           ))}
         </List>
