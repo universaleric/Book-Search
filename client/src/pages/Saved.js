@@ -28,9 +28,9 @@ function Saved() {
 
   return (
     <Container fluid>
-      {books.items !== undefined && books.items !== null ? (
+      {books !== undefined && books !== null ? (
         <List>
-          {books.items.map((book) => (
+          {books.map((book) => (
             <ListItem key={book._id}>
               <div>
                 <img
