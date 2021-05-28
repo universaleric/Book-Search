@@ -11,10 +11,10 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path={["/", "./search"]}>
+          <Route exact path={["/", "/search"]}>
             <Search />
           </Route>
-          <Route exact path="./saved">
+          <Route exact path="/saved">
             <Saved />
           </Route>
           <Route>

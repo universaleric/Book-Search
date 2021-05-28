@@ -64,7 +64,7 @@ function Search() {
                   {book.volumeInfo.infoLink}
                 </a>
               </div>
-              <SaveBtn onClick={() => saveBook(book._id)} />
+              <SaveBtn onClick={() => saveBook(book)} />
             </ListItem>
           ))}
         </List>
