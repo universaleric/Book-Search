@@ -11,8 +11,6 @@ Book Search
 - [Usage](#usage)
 - [Roadmap](#features)
 - [Contributing](#contributing)
-- [Testing](#test)
-- [License](#license)
 - [Questions](#questions)
 - [Acknowledgements](#acknowledgement)
 
