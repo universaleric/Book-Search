@@ -3,7 +3,6 @@
 ### Description
 
 Book Search
-Link to website: https://glacial-ridge-22785.herokuapp.com/
 
 ## Table of Contents
 
@@ -60,7 +59,7 @@ Contributions are what make the open source community such an amazing place to b
 ## Questions
 
 My name is Eric Hay and if you have any questions about this project, you can email me at ericdanielhay24@gmail.com.
-Link to project: github.universaleric
+Link to project: https://glacial-ridge-22785.herokuapp.com/
 
 <a name="acknowledgement"></a>
 
