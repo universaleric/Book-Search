@@ -6,7 +6,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <a className="navbar-brand" href="/">
-        (React) Google Books Search
+        Google Books Search
       </a>
       <div>
         <ul className="navbar-nav">
