@@ -2,7 +2,9 @@
 
 ### Description
 
-Book Search
+<img src="Book Search.jpg"
+     alt="Screen Shot"
+     style="height: 200px;" />
 
 ## Table of Contents
 
