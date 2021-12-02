@@ -66,7 +66,7 @@ import Login from "../components/Login";
 function Login() {
   return (
     <Container fluid>
-      <Login
+      <LoginForm
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
       />

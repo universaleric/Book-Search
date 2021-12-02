@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Login(props) {
+function LoginForm(props) {
   return (
     <nav className="navbar navbar-light bg-light">
       <form>
@@ -47,4 +47,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default LoginForm;
