@@ -6,33 +6,27 @@ function LoginForm(props) {
     <nav className="navbar navbar-light bg-light">
       <form>
         <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="email">Email address</label>
           <input
             type="email"
             className="form-control"
-            id="exampleInputEmail1"
+            name="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
-            onChange={props.handleInputChange}
+            onChange={props.handleEmailChange}
           />
           <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
           </small>
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label for="password">Password</label>
           <input
             type="password"
             className="form-control"
-            id="exampleInputPassword1"
+            name="password"
             placeholder="Password"
-          />
-        </div>
-        <div className="form-group form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
+            onChange={props.handlePasswordChange}
           />
         </div>
         <button

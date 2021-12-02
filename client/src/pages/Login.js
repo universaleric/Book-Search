@@ -63,11 +63,29 @@ import LoginForm from "../components/LoginForm";
 //   document
 //     .querySelector('.signup-form')
 //     .addEventListener('submit', signupFormHandler);
+
+function handleEmailChange(event) {
+  const email = event.target.value;
+  console.log(email);
+}
+
+function handlePasswordChange(event) {
+  const password = event.target.value;
+  console.log(password);
+}
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(email);
+  console.log(password);
+};
+
 function Login() {
   return (
     <Container fluid>
       <LoginForm
-        handleInputChange={handleInputChange}
+        handleEmailChange={handleEmailChange}
+        handlePasswordChange={handlePasswordChange}
         handleSubmit={handleSubmit}
       />
     </Container>
