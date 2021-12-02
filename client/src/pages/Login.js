@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "../components/Grid";
-import Login from "../components/Login";
+import LoginForm from "../components/LoginForm";
 
 // const loginFormHandler = async (event) => {
 //     event.preventDefault();
