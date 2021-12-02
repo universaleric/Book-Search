@@ -42,7 +42,7 @@ This project can be used as a convenient book search tool where a user can save 
 
 ## Roadmap
 
-Allowing the user to separate saved books by genre.
+Currently working to create a login page so each user can maintain a separate saved books page.
 
 <a name="contributing"></a>
 
