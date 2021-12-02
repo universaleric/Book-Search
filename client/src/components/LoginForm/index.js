@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function LoginForm(props) {
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <form>
         <div className="form-group">
           <label for="email">Email address</label>
@@ -26,27 +26,22 @@ function LoginForm(props) {
             onChange={props.handlePasswordChange}
           />
         </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={props.handleInSubmit}
-        >
-          Log In
-        </button>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={props.handleOutSubmit}
-        >
-          Log Out
-        </button>
-        <button
-          type="submit"
-          className="btn btn-secondary"
-          onClick={props.handleUpSubmit}
-        >
-          Sign Up
-        </button>
+        <div className="d-inline-flex p-2">
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={props.handleInSubmit}
+          >
+            Log In
+          </button>
+          <button
+            type="submit"
+            className="btn btn-secondary"
+            onClick={props.handleUpSubmit}
+          >
+            Sign Up
+          </button>
+        </div>
       </form>
     </nav>
   );
