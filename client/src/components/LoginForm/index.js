@@ -29,9 +29,23 @@ function LoginForm(props) {
         <button
           type="submit"
           className="btn btn-primary"
-          onClick={props.handleSubmit}
+          onClick={props.handleInSubmit}
         >
           Log In
+        </button>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={props.handleOutSubmit}
+        >
+          Log Out
+        </button>
+        <button
+          type="submit"
+          className="btn btn-secondary"
+          onClick={props.handleUpSubmit}
+        >
+          Sign Up
         </button>
       </form>
     </nav>

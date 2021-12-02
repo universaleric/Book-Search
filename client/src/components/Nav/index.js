@@ -44,7 +44,7 @@ function Nav() {
                   : "nav-link"
               }
             >
-              Login/Sign Up
+              Login/Logout
             </Link>
           </li>
         </ul>

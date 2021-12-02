@@ -19,7 +19,7 @@ function Login() {
     console.log(password);
   }
 
-  const handleSubmit = (event) => {
+  const handleInSubmit = (event) => {
     event.preventDefault();
     console.log(email);
     console.log(password);
@@ -30,7 +30,7 @@ function Login() {
       <LoginForm
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
-        handleSubmit={handleSubmit}
+        handleSubmit={handleInSubmit}
       />
     </Container>
   );
