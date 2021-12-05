@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 import book from "../../assets/books.png";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -39,14 +40,11 @@ function LoginForm(props) {
           >
             Log In
           </button>
-          <button
-            type="submit"
-            className="btn btn-secondary"
-            onClick={props.handleUpSubmit}
-          >
-            Sign Up
-          </button>
         </form>
+        <span className="register">
+          Don't have an account? <a href="/signup">Sign Up</a>
+    
+        </span>
       </div>
     </div>
   );
