@@ -1,3 +1,15 @@
-.form-group {
-  color: black;
+.books {
+  width: 40%;
+  position: relative;
+  left: 55%;
+}
+
+.loginForm {
+  width: 75%;
+  position: relative;
+  right: 15%;
+}
+
+.loginRow {
+  padding-top: 20px;
 }

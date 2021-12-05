@@ -3,6 +3,7 @@ import { Container } from "../components/Grid";
 import LoginForm from "../components/LoginForm";
 
 
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +27,7 @@ function Login() {
   };
 
   return (
-    <Container fluid>
+    <Container fluid vh-100>
       <LoginForm
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
