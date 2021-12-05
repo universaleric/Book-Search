@@ -1,15 +1,12 @@
 .books {
-  width: 40%;
+  width: 75%;
   position: relative;
-  left: 55%;
 }
 
 .loginForm {
-  width: 75%;
   position: relative;
-  right: 15%;
 }
 
 .loginRow {
-  padding-top: 20px;
+  padding: 5% 25%;
 }

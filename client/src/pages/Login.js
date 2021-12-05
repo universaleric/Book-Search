@@ -27,7 +27,7 @@ function Login() {
   };
 
   return (
-    <Container fluid vh-100>
+    <Container fluid>
       <LoginForm
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
