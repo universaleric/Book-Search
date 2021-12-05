@@ -11,7 +11,20 @@
   padding: 5% 25%;
 }
 
-.register {
+a:link {
+  color: darkblue;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-  font-size: 16px;
+a:visited {
+  color: darkblue;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  color: blue;
+  font-weight: bold;
+  text-decoration: none;
 }

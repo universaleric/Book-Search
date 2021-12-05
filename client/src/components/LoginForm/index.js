@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./style.css";
 import book from "../../assets/books.png";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -42,7 +41,7 @@ function LoginForm(props) {
           </button>
         </form>
         <span className="register">
-          Don't have an account? <a href="/signup">Sign Up</a>
+          Don't have an account? <a className="signupLink" href="/signup">Sign Up</a>
     
         </span>
       </div>
