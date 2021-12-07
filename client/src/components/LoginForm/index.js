@@ -10,21 +10,19 @@ function LoginForm(props) {
         <img src={book} className="books img-fluid" alt="Responsive" />
       </div>
       <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-      <h3>Log In:</h3>
+      <h4>Log in here!</h4>
         <form className="loginForm">
           <div className="form-group">
-            <label for="email">Email Address</label>
             <input
               type="email"
               className="form-control"
               name="email"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Email Address"
               onChange={props.handleEmailChange}
             />
           </div>
           <div className="form-group">
-            <label for="password">Password</label>
             <input
               type="password"
               className="form-control"
@@ -43,7 +41,6 @@ function LoginForm(props) {
         </form>
         <span className="register">
           Don't have an account? <a className="signupLink" href="/signup">Sign Up</a>
-    
         </span>
       </div>
     </div>

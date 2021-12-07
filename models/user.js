@@ -1,6 +1,18 @@
-const { Model } = require("sequelize");
 const bcrypt = require("bcrypt");
-const sequelize = require("../config/connection");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+  volumeInfo: { type: Object, required: true },
+  authors: { type: Array, required: true },
+  description: { type: String, default: "" },
+  image: { type: String, default: "" },
+  link: { type: String, default: "" },
+});
+
+const Book = mongoose.model("Book", bookSchema);
+
+module.exports = Book;
 
 class User extends Model {
   checkPassword(loginPw) {
