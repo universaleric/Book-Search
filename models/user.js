@@ -1,69 +1,49 @@
-const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const uniqueValidator = require('mongoose-unique-validator');
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const secret = require('../config').secret;
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  volumeInfo: { type: Object, required: true },
-  authors: { type: Array, required: true },
-  description: { type: String, default: "" },
-  image: { type: String, default: "" },
-  link: { type: String, default: "" },
-});
+  firstName: {type: String, lowercase: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
+  lastName: {type: String, lowercase: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
+  email: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
+  hash: String,
+  salt: String
 
-const Book = mongoose.model("Book", bookSchema);
+}, {timestamps: true});
 
-module.exports = Book;
+userSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 
-class User extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
-}
+userSchema.methods.setPassword = function(password){
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
+  };
 
-User.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
-      },
-    },
-  },
-  {
-    hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
-      beforeUpdate: async (updatedUserData) => {
-        updatedUserData.password = await bcrypt.hash(
-          updatedUserData.password,
-          10
-        );
-        return updatedUserData;
-      },
-    },
-    sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: "user",
-  }
-);
+userSchema.methods.validPassword = function(password) {
+  const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
+  return this.hash === hash;
+  };
 
+  userSchema.methods.generateJWT = function() {
+    const today = new Date();
+    const exp = new Date(today);
+    exp.setDate(today.getDate() + 60);
+    
+    return jwt.sign({
+     id: this._id,
+     email: this.email,
+     exp: parseInt(exp.getTime() / 1000),
+     }, secret);
+    };
+
+  userSchema.methods.toAuthJSON = function(){
+    return {
+     email: this.email,
+     token: this.generateJWT(),
+    };
+    };
+
+const User = mongoose.model("User", userSchema);
 module.exports = User;
