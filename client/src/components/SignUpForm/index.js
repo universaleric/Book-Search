@@ -18,7 +18,7 @@ function SignUpForm(props) {
               className="form-control"
               name="first"
               placeholder="First Name"
-              onChange={props.handleFirstChange}
+              // onChange={props.handleFirstChange}
             />
           </div>
           <div className="form-group">
@@ -27,7 +27,7 @@ function SignUpForm(props) {
               className="form-control"
               name="last"
               placeholder="Last Name"
-              onChange={props.handleLastChange}
+              // onChange={props.handleLastChange}
             />
           </div>
           <div className="form-group">
@@ -37,7 +37,7 @@ function SignUpForm(props) {
               name="email"
               aria-describedby="emailHelp"
               placeholder="Email Address"
-              onChange={props.handleEmailChange}
+              // onChange={props.handleEmailChange}
             />
           </div>
           <div className="form-group">
@@ -46,7 +46,7 @@ function SignUpForm(props) {
               className="form-control"
               name="password"
               placeholder="Password"
-              onChange={props.handlePasswordChange}
+              // onChange={props.handlePasswordChange}
             />
           </div>
           <div className="form-group">
@@ -55,13 +55,13 @@ function SignUpForm(props) {
               className="form-control"
               name="confirm password"
               placeholder="Confirm Password"
-              onChange={props.handleConfirmChange}
+              // onChange={props.handleConfirmChange}
             />
           </div>
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={props.handleInSubmit}
+            onClick={props.handleSubmit}
           >
             Sign Up
           </button>
