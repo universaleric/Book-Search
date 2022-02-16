@@ -17,19 +17,25 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.19.4"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
     "bootstrap": "^5.0.1",
-    "express": "^4.16.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-jwt": "^6.1.0",
+    "firebase": "^9.6.6",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.3.16",
+    "mongoose": "^5.13.14",
     "mongoose-unique-validator": "^3.0.0",
+    "morgan": "^1.10.0",
     "passport": "^0.5.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "slugify": "^1.6.5"
   }
 }

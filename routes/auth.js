@@ -1,26 +1,18 @@
-const jwt = require('express-jwt');
-const secret = require('../config').secret;
+function verifyJWT(req, res, next) {
+  const token = req.headers["x-access-token"]?.split(' ')[1]
 
-function getTokenFromHeader(req){
-      if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token') {
-        return req.headers.authorization.split(' ')[1];
-      }
-
-      return null;
-    }
-    
-    const auth = {
-      required: jwt({
-        secret: secret,
-        userProperty: 'payload',
-        getToken: getTokenFromHeader
-      }),
-      optional: jwt({
-        secret: secret,
-        userProperty: 'payload',
-        credentialsRequired: false,
-        getToken: getTokenFromHeader
+  if(token) {
+    verifyJWT.verify(token, process.env.PASSPORTSECRET, (err, decoded) => {
+      if(err) return res.json({
+        isLoggedIn: false,
+        message: "Failed To Authenticate"
       })
-    };
-    
-    module.exports = auth;
+      req.user = {};
+      req.user.id = decoded.id
+      req.user.email = decoded.email
+      next()
+    })
+  } else {
+    res.json({message: "Incorrect Token Given", isLoggedIn: false})
+  }
+}

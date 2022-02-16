@@ -1,41 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "../components/Grid";
 import SignUpForm from "../components/SignUpForm";
-import API from "../utils/API";
-// import axios from "axios";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../src/firebase-config";
 
 function SignUp() {
+  const [first, setFirst] = useState("");
+  const [last, setLast] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
 
-  function handleSubmit(event) {
-    const user = event.target.value;
-    console.log(user);
+  const register = async () => {
+    try {
+      if(confirm === password){
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(user);
+    }else{alert("Passwords do not match.")}} catch (error) {
+      console.log(error.message);
+    }
+  };
 
-    API.registerUser(user)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+  function handleFirstChange(event) {
+    const first = event.target.value;
+    console.log(first);
+    setFirst(first);
   }
 
-    // const signUp = e.target;
-    // user = {
-    //   firstName: signUp[0].value,
-    //   lastName: signUp[1].value,
-    //   email: signUp[2].value,
-    //   password: signUp[3].value,
-    // };
+  function handleLastChange(event) {
+    const last = event.target.value;
+    setLast(last);
+    console.log(last);
+  }
 
-    // function registerUser(user) {
-    //   console.log(user);
-    //   API.registerUser(user)
-    //     .then((res) => console.log(res))
-    //     .catch((err) => console.log(err));
-    // }
-  
+  function handleEmailChange(event) {
+    const email = event.target.value;
+    setEmail(email);
+    console.log(email);
+  }
+
+  function handlePasswordChange(event) {
+    const password = event.target.value;
+    setPassword(password);
+    console.log(password);
+  }
+
+  function handleConfirmChange(event) {
+    const confirm = event.target.value;
+    setConfirm(confirm);
+    console.log(confirm);
+  }
 
   return (
     <Container fluid>
-      <SignUpForm handleSubmit={handleSubmit}/>
+      <SignUpForm
+        handleFirstChange={handleFirstChange}
+        handleLastChange={handleLastChange}
+        handleEmailChange={handleEmailChange}
+        handlePasswordChange={handlePasswordChange}
+        handleConfirmChange={handleConfirmChange}
+        register={register}
+      />
     </Container>
   );
-  }
+}
 
 export default SignUp;

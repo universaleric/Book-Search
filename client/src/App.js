@@ -13,17 +13,17 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path={["/", "/search"]}>
-            <Search />
-          </Route>
-          <Route exact path="/saved">
-            <Saved />
-          </Route>
           <Route exact path="/login">
             <Login />
           </Route>
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+          <Route exact path={["/:userId", "/search/:userId"]}>
+            <Search />
+          </Route>
+          <Route exact path="/saved/:userId">
+            <Saved />
           </Route>
           <Route>
             <NoMatch />
