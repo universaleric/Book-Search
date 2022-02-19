@@ -17,17 +17,8 @@ const userSchema = new Schema(
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
       index: true,
     },
-    email: {
+    uid: {
       type: String,
-      lowercase: true,
-      unique: true,
-      required: [true, "can't be blank"],
-      match: [/\S+@\S+\.\S+/, "is invalid"],
-      index: true,
-    },
-    password: {
-      type: String,
-      required: true,
     }
   },
   { timestamps: true }
