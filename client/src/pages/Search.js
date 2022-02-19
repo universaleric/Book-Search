@@ -5,12 +5,17 @@ import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
 import axios from "axios";
+import { getAuth } from "firebase/auth";
 
 function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
 
   function saveBook(bookData) {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const uid = user.uid;
+    bookData = { bookData, uid };
     API.saveBook(bookData)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

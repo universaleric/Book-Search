@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/signup">
             <SignUp />
           </Route>
-          <Route exact path="/saved/:userId">
+          <Route exact path="/saved">
             <Saved />
           </Route>
           <Route>
