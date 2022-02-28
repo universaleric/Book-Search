@@ -34,7 +34,7 @@ function LoginForm(props) {
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={props.handleInSubmit}
+            onClick={props.login}
           >
             Log In
           </button>

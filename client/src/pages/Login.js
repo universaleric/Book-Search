@@ -49,7 +49,7 @@ function Login() {
       <LoginForm
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
-        handleSubmit={login}
+        login={login}
       />
     </Container>
   );
