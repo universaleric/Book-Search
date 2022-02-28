@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import API from "../utils/API";
 import "./style.css";
 
 function Nav() {
@@ -47,7 +48,7 @@ function Nav() {
           </Link>
         </li>
       </ul>
-      {user? (<h8 className="welcome">Welcome, {user?.first}!</h8>) : ""}
+      {user ? <h8 className="welcome">Welcome, {user?.first}!</h8> : ""}
     </nav>
   );
 }
