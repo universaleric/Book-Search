@@ -39,12 +39,6 @@ function Login() {
     console.log(password);
   }
 
-  const handleInSubmit = (event) => {
-    event.preventDefault();
-    console.log(email);
-    console.log(password);
-  };
-
   const logout = async () => {
     await signOut(auth);
   };
@@ -54,7 +48,7 @@ function Login() {
       <LoginForm
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
-        handleSubmit={handleInSubmit}
+        handleSubmit={login}
       />
     </Container>
   );
