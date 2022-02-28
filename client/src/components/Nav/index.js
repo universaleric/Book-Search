@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../src/firebase-config";
+import { auth } from "../../firebase-config";
 import API from "../../utils/API";
 import "./style.css";
 
