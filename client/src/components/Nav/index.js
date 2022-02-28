@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../src/firebase-config";
 import API from "../../utils/API";
 import "./style.css";
 
 function Nav() {
   const [click, setClick] = useState(false);
   const [user, setUser] = useState({});
+  const [userData, setUserData] = useState({});
 
-  useEffect(() => {
+  onAuthStateChanged(auth, (currentUser) => {
+    setUser(currentUser);
     loadUser();
-  }, []);
+  });
 
   function loadUser() {
-    API.getUser()
+    API.getUser(user.uid)
       .then((res) => {
-        setUser(res.data);
+        setUserData(res.data);
         console.log(res.data);
       })
       .catch((err) => console.log(err));
@@ -48,7 +52,7 @@ function Nav() {
           </Link>
         </li>
       </ul>
-      {user ? <h8 className="welcome">Welcome, {user?.first}!</h8> : ""}
+      {user ? <h8 className="welcome">Welcome, {userData?.first}!</h8> : ""}
     </nav>
   );
 }
