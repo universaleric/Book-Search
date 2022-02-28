@@ -31,13 +31,13 @@ function Login() {
   function handleEmailChange(event) {
     const email = event.target.value;
     setEmail(email);
-    console.log(email);
+    // console.log(email);
   }
 
   function handlePasswordChange(event) {
     const password = event.target.value;
     setPassword(password);
-    console.log(password);
+    // console.log(password);
   }
 
   const logout = async () => {

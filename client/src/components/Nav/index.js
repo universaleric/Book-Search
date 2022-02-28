@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../../../src/firebase-config";
-import { onAuthStateChanged } from "firebase/auth";
 import "./style.css";
 
 function Nav() {
   const [click, setClick] = useState(false);
   const [user, setUser] = useState({});
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  function loadUser() {
+    API.getUser()
+      .then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -40,7 +47,7 @@ function Nav() {
           </Link>
         </li>
       </ul>
-      <h8 className="welcome">Welcome, {user?.first}!</h8>
+      {user? (<h8 className="welcome">Welcome, {user?.first}!</h8>) : ""}
     </nav>
   );
 }

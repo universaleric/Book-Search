@@ -1,11 +1,11 @@
 const db = require("../models");
 
 module.exports = {
-//   findOne: function (req, res) {
-//     db.User.find(req.body.user.email)
-//       .then((dbModel) => res.json(dbModel))
-//       .catch((err) => res.status(422).json(err));
-//   },
+  findOne: function (req, res){
+    db.User.findOne(req.params.uid)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
   create: async function (req, res) {
     const user = req.body;
     
