@@ -68,6 +68,12 @@
   display: none;
 }
 
+.welcome {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
 @media screen and (max-width: 992px) {
   .navbar {
     height: 75px;
