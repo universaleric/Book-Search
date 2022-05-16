@@ -12,10 +12,10 @@ function Search() {
   const [result, setResult] = useState([]);
 
   function saveBook(bookData) {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    const uid = user.uid;
-    bookData = { bookData, uid };
+    // const auth = getAuth();
+    // const user = auth.currentUser;
+    // const uid = user.uid;
+    // bookData = { bookData, uid };
     API.saveBook(bookData)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
