@@ -7,6 +7,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   create: async function (req, res) {
+    console.log(req.body);
     const user = req.body;
     
       db.User.create({

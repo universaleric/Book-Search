@@ -12,7 +12,7 @@ function Nav() {
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
-    loadUser();
+    // loadUser();
   });
 
   function loadUser() {
@@ -52,7 +52,7 @@ function Nav() {
           </Link>
         </li>
       </ul>
-      {user ? <h8 className="welcome">Welcome, {userData?.first}!</h8> : ""}
+      {user ? <p className="welcome">Welcome, {userData?.first}!</p> : ""}
     </nav>
   );
 }

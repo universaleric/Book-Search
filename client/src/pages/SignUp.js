@@ -16,10 +16,17 @@ function SignUp() {
   const register = async (event) => {
     event.preventDefault();
     try {
-      if(confirm === password){
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-    }else{alert("Passwords do not match.")}} catch (error) {
+      if (confirm === password) {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        console.log(user);
+      } else {
+        alert("Passwords do not match.");
+      }
+    } catch (error) {
       console.log(error.message);
     }
     saveUser();
@@ -29,7 +36,10 @@ function SignUp() {
     const auth = getAuth();
     const user = auth.currentUser;
     const uid = user.uid;
-    const userData = {first, last, uid}
+    const userData = { first, last, uid };
+    console.log(first);
+    console.log(last);
+    console.log(uid);
     API.saveUser(userData)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
