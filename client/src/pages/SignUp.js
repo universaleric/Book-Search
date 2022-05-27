@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { Container } from "../components/Grid";
 import SignUpForm from "../components/SignUpForm";
 import API from "../utils/API";
@@ -30,6 +31,7 @@ function SignUp() {
       console.log(error.message);
     }
     saveUser();
+    return <Redirect to="/login" />;
   };
 
   function saveUser() {
@@ -47,8 +49,8 @@ function SignUp() {
 
   function handleFirstChange(event) {
     const first = event.target.value;
-    // console.log(first);
     setFirst(first);
+    // console.log(first);
   }
 
   function handleLastChange(event) {
