@@ -7,6 +7,7 @@ import {
 import { Container } from "../components/Grid";
 import LoginForm from "../components/LoginForm";
 import { auth } from "../../src/firebase-config";
+import API from "../utils/API";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -22,11 +23,36 @@ function Login() {
     event.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
+      let uid = user.user.uid;
       console.log(user);
+      console.log(uid);
+      console.log("login successful");
+      getUser(uid);
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const logout = async (event) => {
+    event.preventDefault();
+    await signOut(auth)
+      .then(() => {
+        console.log("logout successful");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  function getUser() {
+    API.getUser()
+      .then((res) => {
+        let user = res.data;
+        console.log(res.data);
+        console.log(user.firstName);
+      })
+      .catch((err) => console.log(err));
+  }
 
   function handleEmailChange(event) {
     const email = event.target.value;
@@ -40,16 +66,13 @@ function Login() {
     // console.log(password);
   }
 
-  const logout = async () => {
-    await signOut(auth);
-  };
-
   return (
     <Container fluid>
       <LoginForm
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
         login={login}
+        logout={logout}
       />
     </Container>
   );

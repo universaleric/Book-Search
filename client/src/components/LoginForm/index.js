@@ -38,6 +38,13 @@ function LoginForm(props) {
           >
             Log In
           </button>
+          <button
+            type="submit"
+            className="btn btn-secondary"
+            onClick={props.logout}
+          >
+            Log Out
+          </button>
         </form>
         <span className="register">
           Don't have an account? <a className="signupLink" href="/signup">Sign Up</a>
