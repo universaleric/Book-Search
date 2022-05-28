@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { Container } from "../components/Grid";
 import SignUpForm from "../components/SignUpForm";
 import API from "../utils/API";
@@ -13,6 +13,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const history = useHistory();
 
   const register = async (event) => {
     event.preventDefault();
@@ -31,7 +32,6 @@ function SignUp() {
       console.log(error.message);
     }
     saveUser();
-    return <Redirect to="/login" />;
   };
 
   function saveUser() {
@@ -44,7 +44,8 @@ function SignUp() {
     console.log(uid);
     API.saveUser(userData)
       .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then(history.push("/login"))
+      .catch((err) => console.log(err))
   }
 
   function handleFirstChange(event) {
