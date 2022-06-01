@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import {
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 import { Container } from "../components/Grid";
@@ -12,20 +12,15 @@ import API from "../utils/API";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const [user, setUser] = useState({});
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  const history = useHistory();
 
   const login = async (event) => {
     event.preventDefault();
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       let uid = user.user.uid;
-      console.log(user);
-      console.log(uid);
+      // console.log(user);
+      // console.log(uid);
       console.log("login successful");
       getUser(uid);
     } catch (error) {
@@ -47,10 +42,11 @@ function Login() {
   function getUser() {
     API.getUser()
       .then((res) => {
-        let user = res.data;
-        console.log(res.data);
-        console.log(user.firstName);
+        // let user = res.data;
+        // console.log(res.data);
+        // console.log(user.firstName);
       })
+      .then(history.push("/search"))
       .catch((err) => console.log(err));
   }
 

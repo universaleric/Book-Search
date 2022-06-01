@@ -1,28 +1,45 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase-config";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import API from "../../utils/API";
 import "./style.css";
 
 function Nav() {
   const [click, setClick] = useState(false);
+  // const [userData, setUserData] = useState({});
   const [user, setUser] = useState({});
-  const [userData, setUserData] = useState({});
+  const [capitalizedName, setCapitalizedName] = useState("");
+  // console.log(userData.firstName);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    // loadUser();
-  });
-
-  function loadUser() {
-    API.getUser(user.uid)
-      .then((res) => {
-        setUserData(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  React.useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        console.log("AuthState has changed.");
+        setUser(currentUser);
+        loadUser();
+        // name();
+      } else {
+        console.log("AuthState has changed.");
+        setUser(false);
+        setCapitalizedName("");
+      }
+    });
+    function loadUser() {
+      API.getUser()
+        .then((res) => {
+          setUser(true);
+          // setUserData(res.data);
+          const originalName = res.data.firstName;
+          setCapitalizedName(originalName.charAt(0).toUpperCase() + originalName.slice(1));
+        })
+        .catch((err) => console.log(err));
+    }
+    // function name(){
+    //   const originalName = userData.firstName;
+    //   setCapitalizedName(originalName.firstName.charAt(0).toUpperCase() + originalName.slice(1));
+    // }
+  }, []);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -52,7 +69,7 @@ function Nav() {
           </Link>
         </li>
       </ul>
-      {user ? <p className="welcome">Welcome, {userData?.first}!</p> : ""}
+      {user ? <p className="welcome">Welcome, {capitalizedName}!</p> : ""}
     </nav>
   );
 }

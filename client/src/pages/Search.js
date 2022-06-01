@@ -5,7 +5,7 @@ import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
 import axios from "axios";
-import { getAuth } from "firebase/auth";
+// import { getAuth } from "firebase/auth";
 
 function Search() {
   const [search, setSearch] = useState("");
