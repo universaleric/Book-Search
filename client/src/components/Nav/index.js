@@ -6,10 +6,9 @@ import "./style.css";
 
 function Nav() {
   const [click, setClick] = useState(false);
-  // const [userData, setUserData] = useState({});
   const [user, setUser] = useState({});
   const [capitalizedName, setCapitalizedName] = useState("");
-  // console.log(userData.firstName);
+  // console.log(capitalizedName);
 
   React.useEffect(() => {
     const auth = getAuth();
