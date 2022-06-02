@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import {
-  signInWithEmailAndPassword,
-  signOut,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 import { Container } from "../components/Grid";
 import LoginForm from "../components/LoginForm";
@@ -26,17 +25,6 @@ function Login() {
     } catch (error) {
       console.log(error.message);
     }
-  };
-
-  const logout = async (event) => {
-    event.preventDefault();
-    await signOut(auth)
-      .then(() => {
-        console.log("logout successful");
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
   };
 
   function getUser() {
@@ -68,7 +56,6 @@ function Login() {
         handleEmailChange={handleEmailChange}
         handlePasswordChange={handlePasswordChange}
         login={login}
-        logout={logout}
       />
     </Container>
   );

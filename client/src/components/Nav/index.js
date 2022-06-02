@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase-config";
 import API from "../../utils/API";
 import "./style.css";
 
@@ -34,11 +35,18 @@ function Nav() {
         })
         .catch((err) => console.log(err));
     }
-    // function name(){
-    //   const originalName = userData.firstName;
-    //   setCapitalizedName(originalName.firstName.charAt(0).toUpperCase() + originalName.slice(1));
-    // }
   }, []);
+
+  const logout = async () => {
+    // event.preventDefault();
+    await signOut(auth)
+      .then(() => {
+        console.log("logout successful");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -62,9 +70,14 @@ function Nav() {
             Saved
           </Link>
         </li>
-        <li className="nav-item">
+        <li style={{display: user? 'none' : null}} className="nav-item">
           <Link to="/login" className="nav-links" onClick={closeMobileMenu}>
-            Login
+            Log In
+          </Link>
+        </li>
+        <li style={{display: user? null : 'none'}} className="nav-item">
+          <Link to="/login" className="nav-links" onClick={()=>{logout(); closeMobileMenu()}}>
+            Log Out
           </Link>
         </li>
       </ul>
