@@ -65,7 +65,7 @@ function Nav() {
             Search
           </Link>
         </li>
-        <li className="nav-item">
+        <li style={{display: user? null : 'none'}} className="nav-item">
           <Link to="/saved" className="nav-links" onClick={closeMobileMenu}>
             Saved
           </Link>

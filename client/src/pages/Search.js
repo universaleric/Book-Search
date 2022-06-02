@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SaveBtn from "../components/SaveBtn";
 import API from "../utils/API";
 import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Form from "../components/Form";
 import axios from "axios";
 // import { getAuth } from "firebase/auth";
@@ -10,6 +11,20 @@ import axios from "axios";
 function Search() {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        console.log("AuthState has changed.");
+        setUser(currentUser);
+      } else {
+        console.log("AuthState has changed.");
+        setUser(false);
+      }
+    });
+  }, []);
 
   function saveBook(bookData) {
     // const auth = getAuth();
@@ -69,7 +84,7 @@ function Search() {
                   {book.volumeInfo.infoLink}
                 </a>
               </div>
-              <SaveBtn onClick={() => saveBook(book)} />
+              <SaveBtn style={{display: user? null : 'none'}} onClick={() => saveBook(book)} />
             </ListItem>
           ))}
         </List>
