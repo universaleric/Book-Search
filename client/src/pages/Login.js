@@ -18,8 +18,8 @@ function Login() {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       let uid = user.user.uid;
-      // console.log(user);
-      // console.log(uid);
+      console.log(user);
+      console.log(uid);
       console.log("login successful");
       getUser(uid);
     } catch (error) {

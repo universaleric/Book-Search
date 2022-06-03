@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
@@ -11,30 +11,29 @@ function Nav() {
   const [capitalizedName, setCapitalizedName] = useState("");
   // console.log(capitalizedName);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         console.log("AuthState has changed.");
         setUser(currentUser);
-        loadUser();
-        // name();
+        console.log(currentUser);
+        console.log(currentUser.uid);
+        API.getUser(currentUser.uid)
+        .then((res) => {
+          const originalName = res.data.firstName;
+          setCapitalizedName(
+            originalName.charAt(0).toUpperCase() + originalName.slice(1)
+          );
+          setUser(true);
+        })
+        .catch((err) => console.log(err));
       } else {
         console.log("AuthState has changed.");
         setUser(false);
         setCapitalizedName("");
       }
     });
-    function loadUser() {
-      API.getUser()
-        .then((res) => {
-          setUser(true);
-          // setUserData(res.data);
-          const originalName = res.data.firstName;
-          setCapitalizedName(originalName.charAt(0).toUpperCase() + originalName.slice(1));
-        })
-        .catch((err) => console.log(err));
-    }
   }, []);
 
   const logout = async () => {
@@ -65,18 +64,25 @@ function Nav() {
             Search
           </Link>
         </li>
-        <li style={{display: user? null : 'none'}} className="nav-item">
+        <li style={{ display: user ? null : "none" }} className="nav-item">
           <Link to="/saved" className="nav-links" onClick={closeMobileMenu}>
             Saved
           </Link>
         </li>
-        <li style={{display: user? 'none' : null}} className="nav-item">
+        <li style={{ display: user ? "none" : null }} className="nav-item">
           <Link to="/login" className="nav-links" onClick={closeMobileMenu}>
             Log In
           </Link>
         </li>
-        <li style={{display: user? null : 'none'}} className="nav-item">
-          <Link to="/login" className="nav-links" onClick={()=>{logout(); closeMobileMenu()}}>
+        <li style={{ display: user ? null : "none" }} className="nav-item">
+          <Link
+            to="/login"
+            className="nav-links"
+            onClick={() => {
+              logout();
+              closeMobileMenu();
+            }}
+          >
             Log Out
           </Link>
         </li>

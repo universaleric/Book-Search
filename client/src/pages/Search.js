@@ -17,10 +17,8 @@ function Search() {
     const auth = getAuth();
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        console.log("AuthState has changed.");
         setUser(currentUser);
       } else {
-        console.log("AuthState has changed.");
         setUser(false);
       }
     });
@@ -53,8 +51,8 @@ function Search() {
       .catch((err) => console.log(err));
   };
 
-  console.log(result.items);
-  console.log(result.length);
+  // console.log(result.items);
+  // console.log(result.length);
   return (
     <Container fluid>
       <Form handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
