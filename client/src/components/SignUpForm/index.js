@@ -16,7 +16,7 @@ function SignUpForm(props) {
             <input
               type="text"
               className="form-control"
-              name="first"
+              name="firstName"
               placeholder="First Name"
               onChange={props.handleFirstChange}
             />
@@ -25,7 +25,7 @@ function SignUpForm(props) {
             <input
               type="text"
               className="form-control"
-              name="last"
+              name="lastName"
               placeholder="Last Name"
               onChange={props.handleLastChange}
             />
@@ -67,7 +67,10 @@ function SignUpForm(props) {
           </button>
         </form>
         <span className="register">
-          Already have an account? <a className="loginLink" href="/login">Log In</a>
+          Already have an account?{" "}
+          <a className="loginLink" href="/login">
+            Log In
+          </a>
         </span>
       </div>
     </div>

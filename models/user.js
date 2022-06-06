@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    uid: {
+      type: String,
+    },
     firstName: {
       type: String,
       lowercase: true,
@@ -14,9 +17,6 @@ const userSchema = new Schema(
       lowercase: true,
       required: [true, "can't be blank"],
       match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-    },
-    uid: {
-      type: String,
     },
   },
   { timestamps: true }

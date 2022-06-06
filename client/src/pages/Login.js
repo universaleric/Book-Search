@@ -6,7 +6,6 @@ import {
 import { Container } from "../components/Grid";
 import LoginForm from "../components/LoginForm";
 import { auth } from "../../src/firebase-config";
-import API from "../utils/API";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -21,22 +20,11 @@ function Login() {
       console.log(user);
       console.log(uid);
       console.log("login successful");
-      getUser(uid);
+      history.push("/search")
     } catch (error) {
       console.log(error.message);
     }
   };
-
-  function getUser() {
-    API.getUser()
-      .then((res) => {
-        // let user = res.data;
-        // console.log(res.data);
-        // console.log(user.firstName);
-      })
-      .then(history.push("/search"))
-      .catch((err) => console.log(err));
-  }
 
   function handleEmailChange(event) {
     const email = event.target.value;

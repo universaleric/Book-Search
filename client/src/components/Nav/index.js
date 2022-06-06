@@ -20,14 +20,14 @@ function Nav() {
         console.log(currentUser);
         console.log(currentUser.uid);
         API.getUser(currentUser.uid)
-        .then((res) => {
-          const originalName = res.data.firstName;
-          setCapitalizedName(
-            originalName.charAt(0).toUpperCase() + originalName.slice(1)
-          );
-          setUser(true);
-        })
-        .catch((err) => console.log(err));
+          .then((res) => {
+            const originalName = res.data.firstName;
+            setCapitalizedName(
+              originalName.charAt(0).toUpperCase() + originalName.slice(1)
+            );
+            setUser(true);
+          })
+          .catch((err) => console.log(err));
       } else {
         console.log("AuthState has changed.");
         setUser(false);
